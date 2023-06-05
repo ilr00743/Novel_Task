@@ -1,0 +1,980 @@
+@back Auditorium id:University
+@set G_Magic=5
+
+@char {G_PlayerVisual}.Angry pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Are you insane?!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Harmony.Gloat pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Oopsie. Sorry about that." author:Harmony speed:20 reset:true
+@hidePrinter BubbleRight
+@hide Harmony
+
+@char Neo.Happy pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "That's a bummer. I guess you' ll have to rewrite it, though I wouldn't bother if I were you. Your essay has no scientific value anyway." author:Neo speed:20 reset:true
+@hidePrinter BubbleRight
+@hide Neo
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "{G_PlayerName}, what's going on?" author:Adam speed:20 reset:true
+@hidePrinter BubbleRight
+@hide Adam
+
+@save
+
+#CHOICE2_9
+;OPTION 1: COMPLAIN ABOUT HARMONY
+;OPTION 2: IT IS MY FAULT
+
+@printer Decision
+@print "What's your decision?" speed:20 reset:true waitInput:false
+@choice "Complain about Harmony." goto:.Choice9_1 set:Choses09=1 do:"@hidePrinter Decision"
+@choice "It is my fault." goto:.Choice9_2 set:Choses09=2 do:"@hidePrinter Decision"
+@stop
+
+;OPTION 1: COMPLAIN ABOUT HARMONY
+#Choice9_1
+
+@printer AuthorText
+@print "...I couldn't let her to get away with it!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Sad pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Harmony spilled her coffee all over my essay!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Harmony rolled her eyes." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Harmony.Surprise pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I didn't do it on purpose, Mr. Harrelson." author:Harmony speed:20
+@hidePrinter BubbleRight
+@hide Harmony
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "But my work is ruined!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "How do we know you didn't want it ruined? You could've tripped Harmony intentionally. I mean, this way nobody gets to see your incapability to write anything coherent." author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@printer AuthorText
+@print "...There were some nasty chuckles in the classroom. Then Mr. Harrelson raised his voice." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Quiet, class! {G_PlayerName}, whatever the nature of your problem, I'm giving you extra time. So don't worry." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...Neo grimaced. I had to start over." speed:20 reset:true
+@hidePrinter AuthorText
+@goto .Choice2_9_End
+
+;OPTION 2: IT IS MY FAULT
+#Choice9_2
+
+@printer AuthorText
+@print "...I wasn't sure what to do. If I exposed Harmony because of the coffee, I'd become a walking cringe. But was there enough time to rewrite the essay?" speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I'm sorry, Professor. I got distracted and caused this to happen myself." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...I heard Harmony and Neo snicker behind me." speed:20 reset:true
+@hidePrinter AuthorText
+@goto .Choice2_9_End
+
+#Choice2_9_End
+
+@save
+
+#CHOICE2_10
+; OPTION 1: Make Harmony apologize (you need +5 Magic).
+; OPTION 2: Ask for extra time to rewrite the essay.
+
+@printer Decision
+@print "What's your decision?" speed:20 reset:true waitInput:false
+@if "G_Magic>=5"
+    @choice "Make Harmony apologize (you need +5 Magic)." goto:.Choice10_1 set:Choses10=1 do:"@hidePrinter Decision"
+@endIf
+@choice "Ask for extra time to rewrite the essay." goto:.Choice10_2 set:Choses10=2 do:"@hidePrinter Decision"
+@stop
+
+; OPTION 1: Make Harmony apologize (you need +5 Magic).
+#Choice10_1
+
+@set G_Magic-=5
+@printer AuthorText
+@print "...I suddenly remembered that I could sometimes influence people. I pressed my eyes shut and concentrated." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char {G_PlayerVisual}.CloseEyes pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Admit you did it." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Harmony stood up and suddenly gave out the truth." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Harmony.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Mr. Harrelson, it was my fault. I deliberately spilled my coffee on {G_PlayerName}'s essay. I'm sorry, {G_PlayerName}!" author:Harmony speed:20
+@hidePrinter BubbleRight
+@hide Harmony
+
+@printer AuthorText
+@print "...Neo jumped. The room fell silent. But Mr. Harrelson wasn't looking at Harmony, he fixed his gaze on me. He looked both intrigued and perplexed." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "That's nice to hear, Miss Harmony. Not that you did it, but that you had the courage to own up to it. I don't think anyone would object to {G_PlayerName} taking some extra time to rewrite her essay, given the circumstances." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "What'd you do that for??" author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@printer AuthorText
+@print "...Harmony stared at him, confused." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Harmony.Surprise pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "What do you mean?" author:Harmony speed:20
+@hidePrinter BubbleRight
+@hide Harmony
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Why did you admit spilling the stupid coffee?" author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@char Harmony.Surprise pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Have you gone mad?? I admitted no such thing!" author:Harmony speed:20
+@hidePrinter BubbleRight
+@hide Harmony
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Now you're being plain scary. I think you need to see a doctor." author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@printer AuthorText
+@print "...Neo picked up his essay and went to turn it in." speed:20 reset:true
+@hidePrinter AuthorText
+
+@printer AuthorText
+@print "...I gave Harmony a devious wink as she just stood there in shock..." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Thanks for confessing. I forgive you." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@goto .Mia_Adam_Classroom_Continue
+
+; OPTION 2: Ask for extra time to rewrite the essay.
+#Choice10_2
+
+@printer AuthorText
+@print "...I figured the only sensible thing left for me to do was to ask Mr. Harrelson to give me more time to rewrite the essay." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I'm sorry this happened. Can I ask for extra time to rewrite the whole thing?" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I'm sorry, {G_PlayerName}. You'll just have to turn it in as it is.." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...I was devastated. The essay turned out to be a waste of time and effort. I wasn't going to get that internship." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Well, good luck I guess. I bet you're going to win." author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@printer AuthorText
+@print "...Oddly, for a split second it seemed like Neo was not happy about how things turned out." speed:20 reset:true
+@hidePrinter AuthorText
+
+@printer AuthorText
+@print "<i>+1 Magic.</i>" speed:20 reset:true
+@set G_Magic++
+@hidePrinter AuthorText
+@goto .Mia_Adam_Classroom_Continue
+
+;THEN
+;2-11 INT. CLASSROOM - ADAM'S DESK (LOC 10) (LOC 10)
+;Mia, Adam
+#Mia_Adam_Classroom_Continue
+
+@back AuditoriumTable id:University
+
+@goto .Choice2_9&&2_10_Var_1_Result if:"Choses09=1 && Choses10=1"
+
+@goto .Choice2_10_Var_2_Result if:" Choses10=2"
+
+#Choice2_9&&2_10_Var_1_Result
+
+@printer AuthorText
+@print "...I finished rewriting my essay, walked up to Mr. Harrelson's desk and turned it in. There was no one left in the room besides the two of us." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Thank you, {G_PlayerName}. I'm sure your essay is very interesting." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Thank YOU. I hope you won't regret having to wait." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+@goto .MIA_ADAM_CONTINUE
+
+#Choice2_10_Var_2_Result
+
+@printer AuthorText
+@print "...I walked up to Mr. Harrelson's desk and turned in my dripping essay." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I'm sorry about that. I was trying to do the best I can. But maybe luck is not on my side." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I'm sorry too. But there will be lots of competitions to follow. You're sure to win one." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I hope so." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+@goto .MIA_ADAM_CONTINUE
+
+;THEN
+#MIA_ADAM_CONTINUE
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I meant to ask you, did you read the book I recommended? Did anything you read there come in handy today?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...It would have been embarrassing to admit that I fell asleep each time I attempted to read it." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Not yet... I mean, I checked the book out, but... There's so much in there, I haven't really grasped it yet..." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Mr. Harrelson kept peering at me closely." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "No wonder. This book, how should I say this, is of profound depth and contains many layers of knowledge. Well, I hope you continue working with it." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...I nodded and turned toward the exit. Mr. Harrelson called out to me." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "{G_PlayerName}, how would you like to grab some dinner and talk things over?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...I felt blood rushing to my face. Was flirting with me?? That wouldn't be right... Would it?" speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I suggest we meet at Green Square Cafe here on campus. I'd be happy to tell you a bit about my scientific discoveries...and learn more about your plans with regard to science and learning." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@save
+
+#CHOICE2_11
+;OPTION 1: It's a chance to get to know him better.
+;OPTION 2: It's better to refuse.
+
+@printer Decision
+@print "What's your decision?" speed:20 reset:true waitInput:false
+@choice "It's a chance to get to know him better." goto:.Choice11_1 set:Choses11=1 do:"@hidePrinter Decision"
+@choice "It's better to refuse." goto:.Choice11_2 set:Choses11=2 do:"@hidePrinter Decision"
+@stop
+
+;OPTION 1: It's a chance to get to know him better.
+#Choice11_1
+
+@printer AuthorText
+@print "...I figured Mr. Harrelson probably needed a research assistant or something, and I looked like a promising student to him. It was stupid to think he was flirting. But the idea of spending some time with him sounded so nice..." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Sure. When is a good time for you?" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Mr. Harrelson briefly checked the calendar in his phone." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Six o'clock. Can you make it?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...Our eyes were locked...I couldn't look away. It felt like his eyes are pulling me in..." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I'm sorry..." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "So, six o'clock at Green Square?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Yup. See you there!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Mr. Harrelson nodded and started packing up the student essays. I walked out of the classroom." speed:20 reset:true
+@hidePrinter AuthorText
+
+@printer AuthorText
+@print "<i>ADAM IS GRATEFUL FOR YOUR TRUST</i>" speed:20 reset:true
+@hidePrinter AuthorText
+@goto .Choice2_11_End
+
+;OPTION 2: It's better to refuse.
+#Choice11_2
+
+@printer AuthorText
+@print "...This felt very odd. I was not about to engage in some kind of an "extracurricular" relationship with a prof." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I'm sorry. I can't today. Or at all, actually..." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "No, I'm sorry. I think I scared you a bit. Actually, it's quite common for a professor to try to get to know promising students that might advance science... I do believe that you could write a fantastic thesis about the Middle Ages. I could be your academic advisor. But the time to start preparing for that is now." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...I felt like a total idiot. What was I thinking! Mr. Harrelson could not possibly be attracted to me! This was purely a scientific proposal, a learning opportunity!" speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Hmm...I think I could reschedule my plans. What should I prepare for the dinner?" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Such as?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...My question seemed to amuse him, and I felt embarrassed again." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Well... I mean, prepare to discuss a specific topic. Maybe I should bring my notes..." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "You don't need to. We'll just talk and find some junction points where our opinions and interests intersect." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Sure. Ok. Great!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "So, six o'clock at Green Square?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Yup. See you there!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Mr. Harrelson nodded and started packing up the student essays. I walked out of the classroom, my face burning." speed:20 reset:true
+@hidePrinter AuthorText
+
+@printer AuthorText
+@print "<i>ADAM REALIZES YOU DON'T TRUST HIM</i>" speed:20 reset:true
+@hidePrinter AuthorText
+@goto .Choice2_11_End
+
+#Choice2_11_End
+;2-12. DINA'S ROOM (LOC 17)
+;MIA, DINA
+
+@wait 0.25
+@back DinaRoom id:DinaRoom time:0.5
+
+@printer AuthorText
+@print "...Dina was home already when I burst into the room. She immediately noticed how worked up I was." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "What's up? You look like you've seen a ghost." author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+@goto .Choice2_9&&2_10_Var_1_Result02 if:"Choses09=1 && Choses10=1"
+
+@goto .Choice2_10_Var_2_Result02 if:"Choses10=2"
+
+#Choice2_9&&2_10_Var_1_Result02
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I'm having dinner with Mr. Harrelson tonight!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Surprise pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Wow, girl! It's your first day of college, and you've already snatched up the most handsome prof of all!" author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+@goto .Mia_Dia_Continue
+
+#Choice2_10_Var_2_Result02
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I failed the essay. And I'm having dinner with Mr. Harrelson tonight." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I don't get how these two things are connected, but congratulations! It's your first day of college, and you've already snatched up the most handsome prof of all!" author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+@goto .Mia_Dia_Continue
+
+
+;THEN
+#Mia_Dia_Continue
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "That's just business, I mean, it's an academic opportunity!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Surprise pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Chill, I'm not about to judge you even if it's not a 100% academic opportunity!" author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+@printer AuthorText
+@print "...I think I blushed a bit." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Please stop the insinuations. Everyone knows it's wrong for professors to go out with their students, and vice versa." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Sure. Even though all the prerequisites for an awesome love story are there..." author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Prerequisites? Like mutual respect or a common passion for history?" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Obstacles, silly! Stuff that prevents potential lovers from being together. Social status, financial differences, other committments, a terrible sickness..." author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Are those absolutely necessary?.." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Sure! Romeo and Juliet couldn't be together because their families were feuding and Romeo killed Juliet's brother. No one would ever care about their story if they just averagely met, fell in love and had babies... boooring!" author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+@printer AuthorText
+@print "...I started laughing but felt myself blushing again." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Oh, it's almost six. It's not polite to be late to a scientific discussion with a professor." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Dina.Smile pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Especially when he's so handsome." author:Dina speed:20
+@hidePrinter BubbleRight
+@hide Dina
+
+
+;2-13. GREEN SQUARE CAFE - NIGHT (LOC 21)
+;ADAM, MIA, NEO
+
+@wait 0.25
+@back FoodStreet id:FoodStreet time:0.5
+
+@printer AuthorText
+@print "...The dining hall was in the loft overlooking the entire valley, the campus, the college spires... Adam was already there, with a bottle of wine on the table to keep him company while he waited. I greeted him as he moved out a chair for me, and then I looked at the label." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "<i>Alchemist's Tears?</i> What an odd name for a wine!" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I know. It's from a French winery, and it's based on a recipe found in a workshop that belonged to a medieval alchemist. They were an interesting lot, the alchemists. Much like the witches." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@printer AuthorText
+@print "...I remembered the strange dream I had about the alchemist and his remedy for the curse... There was something else in that dream... a silver jar... with some kind of balm inside? Mr. Harrelson interrupted my recollection." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Unlike witches, however, they practiced things that modern science, albeit with a strain, can call scientific. Like finding the secret to immortality or turning lead into gold." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Yes, they were scientists in a world almost devoid of science. But I think they rather tried to explore the fabric of the universe. They wanted to know what stuff was made." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "So you don't think they were looking for the philosopher's' stone?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I think the philosopher's' stone was a metaphor for what they had instead of the scientific method back then. I mean, I don't believe it was an actual physical substance." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Mr. Harrelson smiled at me." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Happy pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "You're an extraordinary girl, {G_PlayerName}. This is the first time I see so much skepticism in someone so young..." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Surprise pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Wow, what's he doing here?" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Neo was leering at me through the lens of his phone. A second later, he was standing at our table." speed:20 reset:true
+@hidePrinter AuthorText
+
+@goto .Choice2_9&&2_10_VAR_1_Result03 if:"Choses09=1&&Choses10=1"
+
+@goto .Choice2_10_VAR_2_Result03 if:"Choses10=2"
+
+#Choice2_9&&2_10_VAR_1_Result03
+
+@printer AuthorText
+@print "...Neo showed us his phone screen with a triumphant look on his face." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Fancy meeting you here! A prof and his student in a romantic setting! No, no, of course it's not what it looks like, you don't have to explain. Of course the student isn't flirting with the prof because she wants the internship. And of course the wine is only there as table decor; who cares that the student is underage??" author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@save
+
+#CHOICE2_12
+;OPTION 1: Ignore him.
+;OPTION 2: Get angry at him.
+;OPTION 3: Ask him to delete the photo.
+
+@printer Decision
+@print "What's your decision?" speed:20 reset:true waitInput:false
+@choice "Ignore him." goto:.Choice12_1 set:Choses12=1 do:"@hidePrinter Decision"
+@choice "Get angry at him." goto:.Choice12_2 set:Choses12=2 do:"@hidePrinter Decision"
+@choice "Ask him to delete the photo." goto:.Choice12_3 set:Choses12=3 do:"@hidePrinter Decision"
+@stop
+
+;OPTION 1: Ignore him.
+#Choice12_1
+
+@printer AuthorText
+@print "...Neo showed us his phone screen with a triumphant look on his face." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Surprise pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "What's your problem? Are you envious that you didn't make friends with the professor first?" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Nah. I'm just here to make some high-quality photos. Just in case." author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@goto .NEO'S_THREAT
+
+;OPTION 2: Get angry at him.
+#Choice12_2
+
+@printer AuthorText
+@print "...Why was he stalking me all day??" speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.CloseEyes pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I hope you choke on your spite, Neo." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...I felt my mother's amulet vibrate. Before I knew what was happening, Neo grabbed an olive from the bowl on our table and popped it in his mouth. And suddenly, right in front of my eyes, his face changed, he started choking, clutching at his throat... He was unironically choking! I told myself I should think a hundred times before making wishes like that again!" speed:20 reset:true
+@hidePrinter AuthorText
+
+@wait 1
+
+@printer AuthorText
+@print "...I jumped up to him, grabbed him from behind and yanked him up a little. And again! Mr. Harrelson joined me." speed:20 reset:true
+@hidePrinter AuthorText
+
+@printer AuthorText
+@print "...The olive finally sprung out of Neo's throat, and he started to cough, which meant he was breathing again. I let out a sigh of relief. He gave me an angry look and pushed me away." speed:20 reset:true
+@hidePrinter AuthorText
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Neo, are you all right?" author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I'm fine. It's your little minion who's the problem." author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@printer AuthorText
+@print "<i>+1 Magic.</i>" speed:20 reset:true
+@set G_Magic++
+@hidePrinter AuthorText
+
+@goto .NEO'S_THREAT
+
+;OPTION 3: Ask him to delete the photo.
+#Choice12_3
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I didn't give you permission to take my picture, and you're intruding. Don't be rude. Please delete it." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "This is a public place, you dummy. You're allowed to take photos of anyone you want her.e, including celebrities such as your date." author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@goto .NEO'S_THREAT
+
+
+#NEO'S_THREAT
+
+@camera offset:0.15,0 time:0.2 wait:false
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "Neo, you are in the wrong at the moment. And your behavior makes me doubt your chances of winning the contest." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@char Neo.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "If <i>she</i> wins the contest, the ethics committee will see that picture with the two of you and a bottle of wine. I warned you." author:Neo speed:20
+@hidePrinter BubbleRight
+@hide Neo
+
+@printer AuthorText
+@print "...Neo stormed off. The evening was ruined." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I suggest we stay. Mind you, we're not doing anything wrong. Though I admit I shoud've thought twice before ordering the wine..." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "I think I've lost my appetite. Sorry, Mr. Harrelson. I'd better go." author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+
+@printer AuthorText
+@print "...Adam got up beside me. He quickly threw a few bills on the table." speed:20 reset:true
+@hidePrinter AuthorText
+
+@char Adam.Default pos:70,0 scale:0.9,0.9
+@printer BubbleRight pos:50,45
+@print "I'll walk you out. You shouldn't go alone when you're upset like this." author:Adam speed:20
+@hidePrinter BubbleRight
+@hide Adam
+@stop
+
+#Choice2_10_VAR_2_Result03
+
+@camera offset:0,0 time:0.2 wait:false
+
+@char {G_PlayerVisual}.Default pos:45,0 scale:0.9,0.9
+@printer BubbleLeft pos:50,45
+@print "Are you stalking me??" author:{G_PlayerName} speed:20 reset:true
+@hidePrinter BubbleLeft
+@hide {G_PlayerVisual}
+@stop
